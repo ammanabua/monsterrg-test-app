@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators as validators, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-sign-in',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterOutlet],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
@@ -16,14 +19,23 @@ export class SignInComponent {
     password: new FormControl('', [validators.required, validators.minLength(6)])
   });
 
-  constructor(private auth: Auth) { }
+  constructor(private auth: Auth, private snackBar: MatSnackBar) { }
 
 
-  onSubmit() {
+  async onSubmit() {
     if (this.signInForm.valid) {
       const { email, password } = this.signInForm.value;
       // Handle sign-in logic here, e.g., using Firebase Auth
-      console.log('Form Submitted!', { email, password });
+      try{
+        await signInWithEmailAndPassword(this.auth, email!, password!);
+        this.snackBar.open('Sign-in successful', 'Close', {
+          duration: 4000
+        });
+      } catch (error) {
+        this.snackBar.open('Sign-in failed', 'Close', {
+          duration: 4000
+        });
+      }
     } else {
       console.log('Form is invalid');
     }

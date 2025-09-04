@@ -22,5 +22,9 @@ export class AppComponent {
     numberOfGuests: new FormControl('', [validators.required, validators.pattern('^[0-9]{1,3}$')]),
     comments: new FormControl('')
   });
+
+  retrieveForm = new FormGroup({
+    flightNumber: new FormControl('', [validators.required, validators.pattern('^[0-9]{1,4}$')]),
+  });
 }
 
