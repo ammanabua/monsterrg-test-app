@@ -9,7 +9,7 @@
 <div *ngIf="activeTab === 'store'">
   <form [formGroup]="flightForm" (ngSubmit)="storeFlight()" class="flight-form">
     <label>Airline</label>
-        <input formControlName="airline" required />
+        <input formControlName="airline" placeholder="e.g. Delta" required />
         <div *ngIf="flightForm.get('airline')?.invalid && flightForm.get('airline')?.touched" class="error">
         Airline is required.
         </div>
@@ -26,8 +26,8 @@
         Arrival time is required.
         </div>
 
-        <label>Flight Number</label>
-        <input formControlName="flightNumber" required />
+  <label>Flight Number (last 4 digits)</label>
+  <input formControlName="flightNumber" required placeholder="e.g. 1234" />
         <div *ngIf="flightForm.get('flightNumber')?.invalid && flightForm.get('flightNumber')?.touched" class="error">
         Flight number is required.
         </div>
@@ -45,8 +45,8 @@
 
 <div *ngIf="activeTab === 'retrieve'">
   <form [formGroup]="retrieveForm" (ngSubmit)="retrieveFlight()" class="retrieve-form">
-    <label>Flight Number</label>
-    <input formControlName="flightNumber" required />
+  <label>Flight Number (last 4 digits)</label>
+  <input formControlName="flightNumber" required placeholder="e.g. 1234" />
     <button type="submit">Retrieve Flight</button>
   </form>
   <div class="flight-card" *ngIf="retrievedFlight">

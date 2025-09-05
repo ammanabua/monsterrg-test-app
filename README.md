@@ -92,7 +92,7 @@ ng build
   `https://us-central1-crm-sdk.cloudfunctions.net/flightInfoChallenge`
 - Required headers:
   - `token`: `WW91IG11c3QgYmUgdGhlIGN1cmlvdXMgdHlwZS4gIEJyaW5nIHRoaXMgdXAgYXQgdGhlIGludGVydmlldyBmb3IgYm9udXMgcG9pbnRzICEh`
-  - `candidate`: `GitHub Copilot`
+  - `candidate`: `Amman Abua`
 - Payload interface:
   ```typescript
   export interface FlightInfoPayload {
