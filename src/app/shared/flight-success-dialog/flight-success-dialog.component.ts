@@ -4,7 +4,7 @@ import { MatDialog, MatDialogContent, MatDialogActions } from '@angular/material
 
 @Component({
   selector: 'app-flight-success-dialog',
-  imports: [MatDialogContent, MatDialogActions],
+  imports: [],
   templateUrl: './flight-success-dialog.component.html',
   styleUrl: './flight-success-dialog.component.css'
 })

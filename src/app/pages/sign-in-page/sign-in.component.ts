@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Auth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators as validators, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterModule } from '@angular/router';
@@ -21,7 +22,7 @@ export class SignInComponent {
   });
 
 
-  constructor(private auth: Auth, private snackBar: MatSnackBar, private router: Router) { }
+  constructor(private auth: Auth, private snackBar: MatSnackBar, private router: Router, private firestore: Firestore) { }
 
 
   async onSubmit() {
@@ -51,7 +52,15 @@ export class SignInComponent {
   const provider = new GoogleAuthProvider();
   try {
     const result = await signInWithPopup(this.auth, provider);
-    // result.user contains the signed-in user info
+    const user = result.user;
+
+    await setDoc(doc(this.firestore, 'users', user.uid), {
+      email: user.email,
+      uid: user.uid,
+      provider: 'google',
+      lastLogin: new Date().toISOString()
+    }, { merge: true });
+
     // Optionally, navigate or show a success message
     this.snackBar.open('Google sign-in successful', 'Close', {
       duration: 4000
