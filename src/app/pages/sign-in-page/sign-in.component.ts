@@ -40,18 +40,18 @@ export class SignInComponent {
       try{
         await signInWithEmailAndPassword(this.auth, email!, password!);
         this.snackBar.open('Sign-in successful', 'Close', {
-          duration: 4000
+          duration: 4000, horizontalPosition: 'end', verticalPosition: 'top'
         });
         this.router.navigate(['/']);
       } catch (error) {
         this.snackBar.open('Sign-in failed', 'Close', {
-          duration: 4000
+          duration: 4000, horizontalPosition: 'end', verticalPosition: 'top'
         });
       }
     } else {
       console.log('Form is invalid');
       this.snackBar.open('Invalid email/password combination.', 'Close', {
-        duration: 4000
+        duration: 4000, horizontalPosition: 'end', verticalPosition: 'top'
       });
     }
   }
@@ -71,13 +71,13 @@ export class SignInComponent {
 
     // Optionally, navigate or show a success message
     this.snackBar.open('Google sign-in successful', 'Close', {
-      duration: 4000
+      duration: 4000, horizontalPosition: 'end', verticalPosition: 'top'
     });
     this.router.navigate(['/']);
   } catch (error) {
     // Handle errors (e.g., show a snackbar)
     this.snackBar.open('Google sign-in failed', 'Close', {
-      duration: 4000
+      duration: 4000, horizontalPosition: 'end', verticalPosition: 'top'
     });
   }
 }

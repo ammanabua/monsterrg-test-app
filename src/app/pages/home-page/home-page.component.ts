@@ -123,18 +123,17 @@ export class HomePageComponent {
           this.retrievedFlight = null;
           this.retrieveForm.reset();
           // Show feedback: No flight found
-          this.snackBar.open('No flight found', 'Close', { duration: 4000 });
+          this.snackBar.open('No flight found', 'Close', { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' });
         } else {
           this.retrievedFlight = querySnapshot.docs[0].data();
           // Show feedback: Flight found
-          this.snackBar.open('Flight found', 'Close', { duration: 4000 });
+          this.snackBar.open('Flight found', 'Close', { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' });
         }
       } catch (error) {
         this.searchAttempted = true;
         this.retrievedFlight = null;
         // Show feedback: Error occurred
-        // e.g., this.snackBar.open('Error retrieving flight', 'Close', { duration: 4000 });
-        console.error(error);
+        this.snackBar.open('Error retrieving flight', 'Close', { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' });
       }
     }
   }
@@ -142,7 +141,7 @@ export class HomePageComponent {
   async logout() {
     await signOut(this.auth);
     this.snackBar.open('Logout successful', 'Close', {
-      duration: 4000
+      duration: 4000, horizontalPosition: 'end', verticalPosition: 'top'
     });
     // Optionally, redirect to sign-in page
     this.router.navigate(['/sign-in']);

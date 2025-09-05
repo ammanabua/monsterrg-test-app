@@ -32,7 +32,7 @@ export class SignUpPageComponent {
     if (this.signUpForm.valid) {
       const { email, password, confirmPassword } = this.signUpForm.value;
       if (password !== confirmPassword) {
-        this.snackBar.open('Passwords do not match.', 'Close', { duration: 4000 });
+        this.snackBar.open('Passwords do not match.', 'Close', { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' });
         return;
       }
       try {
@@ -44,14 +44,14 @@ export class SignUpPageComponent {
           uid: user.uid,
           createdAt: new Date().toISOString()
         });
-        this.snackBar.open('Sign-up successful', 'Close', { duration: 4000 });
+        this.snackBar.open('Sign-up successful', 'Close', { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' });
         this.router.navigate(['/']);
       } catch (error) {
-        this.snackBar.open('Sign-up failed', 'Close', { duration: 4000 });
+        this.snackBar.open('Sign-up failed', 'Close', { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' });
         console.error(error);
       }
     } else {
-      this.snackBar.open('Please fill in all required fields correctly.', 'Close', { duration: 4000 });
+      this.snackBar.open('Please fill in all required fields correctly.', 'Close', { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' });
     }
   }
 }
