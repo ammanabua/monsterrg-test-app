@@ -45,8 +45,12 @@
 
 <div *ngIf="activeTab === 'retrieve'">
   <form [formGroup]="retrieveForm" (ngSubmit)="retrieveFlight()" class="retrieve-form">
-  <label>Flight Number (last 4 digits)</label>
-  <input formControlName="flightNumber" required placeholder="e.g. 1234" />
+    <label>Flight Number (last 4 digits)</label>
+    <input formControlName="flightNumber" required placeholder="e.g. 1234" />
+    <div *ngIf="retrieveForm.get('flightNumber')?.invalid && retrieveForm.get('flightNumber')?.touched" class="error">
+      <span *ngIf="retrieveForm.get('flightNumber')?.errors?.['required']">Flight number is required.</span>
+      <span *ngIf="retrieveForm.get('flightNumber')?.errors?.['pattern']">Enter a valid 4-digit flight number.</span>
+    </div>
     <button type="submit">Retrieve Flight</button>
   </form>
   <div class="flight-card" *ngIf="retrievedFlight">

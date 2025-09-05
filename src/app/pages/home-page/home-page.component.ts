@@ -101,6 +101,11 @@ export class HomePageComponent {
 
 
   async retrieveFlight() {
+    // Mark as touched to show errors if invalid
+    const control = this.retrieveForm.get('flightNumber');
+    if (control && control.invalid) {
+      control.markAsTouched();
+    }
     this.searchAttempted = false;
     this.retrievedFlight = null;
     if (this.auth.currentUser && this.retrieveForm.valid) {
