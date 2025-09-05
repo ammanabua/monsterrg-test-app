@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/monsterrg-test-app/browser",
+    "public": "dist/monsterrg-test-app",
     "ignore": [
       "firebase.json",
       "**/.*",
