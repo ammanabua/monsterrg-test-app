@@ -8,6 +8,7 @@ import { FlightSuccessDialogComponent } from '../../shared/flight-success-dialog
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FlightFailedDialogComponent } from '../../shared/flight-failed-dialog/flight-failed-dialog.component';
+import { FlightInfoPayload } from '../../models/flight-info-payload.model';
 
 @Component({
   selector: 'app-home-page',
@@ -58,13 +59,13 @@ export class HomePageComponent {
 
       // Second request: POST to challenge API
       try {
-        const payload = {
-          airline: formValue.airline,
-          arrivalDate: formValue.arrivalDate ? formValue.arrivalDate.toString() : '',
-          arrivalTime: formValue.arrivalTime ? formValue.arrivalTime.toString() : '',
-          flightNumber: formValue.flightNumber,
-          numOfGuests: Number(formValue.numberOfGuests),
-          comments: formValue.comments || '',
+        const payload: FlightInfoPayload = {
+          airline: formValue.airline ?? null,
+          arrivalDate: formValue.arrivalDate ? formValue.arrivalDate.toString() : null,
+          arrivalTime: formValue.arrivalTime ? formValue.arrivalTime.toString() : null,
+          flightNumber: formValue.flightNumber ?? null,
+          numOfGuests: formValue.numberOfGuests !== undefined && formValue.numberOfGuests !== null ? Number(formValue.numberOfGuests) : null,
+          comments: formValue.comments ?? null,
         };
 
         const response = await fetch('https://us-central1-crm-sdk.cloudfunctions.net/flightInfoChallenge', {
@@ -76,6 +77,8 @@ export class HomePageComponent {
           },
           body: JSON.stringify(payload)
         });
+        console.log('Payload sent to challenge API: ', payload);
+        console.log('Response from challenge API: ', response); 
         if (!response.ok) {
           console.error('Challenge API request failed');
         }

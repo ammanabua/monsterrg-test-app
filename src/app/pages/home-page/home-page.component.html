@@ -58,7 +58,10 @@
     <div class="flight-detail"><strong>Number of Guests:</strong> {{ retrievedFlight.numberOfGuests }}</div>
     <div class="flight-detail" *ngIf="retrievedFlight.comments"><strong>Comments:</strong> {{ retrievedFlight.comments }}</div>
   </div>
-  <div *ngIf="retrievedFlight === null">
-    <p>No flight found...</p>
+  <div *ngIf="retrievedFlight === null && searchAttempted" class="no-flight-container">
+    <div class="no-flight-icon">
+      <span class="material-icons">search_off</span>
+    </div>
+    <p class="no-flight-text">No flight found</p>
   </div>
 </div>
