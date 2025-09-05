@@ -3,7 +3,7 @@ import { CanActivateFn } from '@angular/router';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
-export const authGuard: CanActivateFn = async () => {
+export const authGuard: CanActivateFn = () => {
   const auth = inject(Auth);
   const router = inject(Router);
   return new Promise(resolve => {
@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = async () => {
       if (user) {
         resolve(true);
       } else {
-        resolve(router.createUrlTree(['/sign-in']));
+        resolve(router.parseUrl('/sign-in'));
       }
       unsubscribe();
     });
