@@ -39,6 +39,14 @@ export class HomePageComponent {
   constructor (private auth: Auth, private firestore: Firestore, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   async storeFlight() {
+    // Mark all required controls as touched to show errors
+    Object.keys(this.flightForm.controls).forEach(key => {
+      const control = this.flightForm.get(key);
+      if (control && control.validator && control.hasError('required')) {
+        control.markAsTouched();
+      }
+    });
+
     if (this.flightForm.valid && this.auth.currentUser) {
       const user = this.auth.currentUser;
       const formValue = this.flightForm.value;
