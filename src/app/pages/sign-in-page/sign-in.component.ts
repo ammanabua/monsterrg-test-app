@@ -1,13 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators as validators, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-sign-in',
-  imports: [ReactiveFormsModule, RouterOutlet],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
@@ -19,7 +20,8 @@ export class SignInComponent {
     password: new FormControl('', [validators.required, validators.minLength(6)])
   });
 
-  constructor(private auth: Auth, private snackBar: MatSnackBar) { }
+
+  constructor(private auth: Auth, private snackBar: MatSnackBar, private router: Router) { }
 
 
   async onSubmit() {
@@ -31,6 +33,7 @@ export class SignInComponent {
         this.snackBar.open('Sign-in successful', 'Close', {
           duration: 4000
         });
+        this.router.navigate(['/']);
       } catch (error) {
         this.snackBar.open('Sign-in failed', 'Close', {
           duration: 4000
@@ -38,6 +41,9 @@ export class SignInComponent {
       }
     } else {
       console.log('Form is invalid');
+      this.snackBar.open('Invalid email/password combination.', 'Close', {
+        duration: 4000
+      });
     }
   }
 }

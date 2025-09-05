@@ -1,0 +1,148 @@
+/* Dynamic, modern, clean styling for flight forms and tabs */
+
+.error {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+.tabs {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 2rem;
+	gap: 1rem;
+    padding-top: 2rem;
+}
+
+.tabs button {
+	padding: 0.75rem 2rem;
+	border: none;
+	border-radius: 8px 8px 0 0;
+	background: #f0f0f0;
+	color: #333;
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+}
+
+.tabs button.active {
+	background: linear-gradient(135deg, #6e8efb, #a777e3);
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(110, 142, 251, 0.15);
+}
+
+.flight-form, .retrieve-form {
+	background: #fff;
+	padding: 1.5rem 2rem;
+	border-radius: 16px;
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+	max-width: 400px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+}
+
+.flight-form label, .retrieve-form label {
+	font-size: 1rem;
+	color: #6e8efb;
+	font-weight: 500;
+	margin-bottom: 0.1rem;
+}
+
+.flight-form input, .retrieve-form input {
+	padding: 0.4rem 1rem;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	font-size: 1rem;
+	transition: border-color 0.2s;
+	margin-bottom: 0.3rem;
+}
+
+.flight-form input:focus, .retrieve-form input:focus {
+	border-color: #6e8efb;
+	outline: none;
+}
+
+.flight-form button, .retrieve-form button {
+	padding: 0.8rem 1.5rem;
+	background: linear-gradient(135deg, #6e8efb, #a777e3);
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	margin-top: 1rem;
+	transition: background 0.2s;
+}
+
+.flight-form button:hover, .retrieve-form button:hover {
+	background: linear-gradient(135deg, #a777e3, #6e8efb);
+}
+
+h3 {
+	text-align: center;
+	color: #6e8efb;
+	margin-top: 2rem;
+}
+
+pre {
+	background: #f7f7fa;
+	padding: 1rem;
+	border-radius: 8px;
+	font-size: 1rem;
+	color: #333;
+	box-shadow: 0 2px 8px rgba(110, 142, 251, 0.07);
+	margin-top: 1rem;
+}
+
+.flight-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(110, 142, 251, 0.15);
+  padding: 2rem 1.5rem;
+  max-width: 400px;
+  margin: 2rem auto;
+  animation: fadeIn 0.7s ease;
+  transition: box-shadow 0.2s;
+}
+.flight-card:hover {
+  box-shadow: 0 12px 40px rgba(110, 142, 251, 0.25);
+}
+.flight-detail {
+  font-size: 1.05rem;
+  color: #333;
+  margin-bottom: 0.7rem;
+}
+.flight-card h3 {
+  color: #6e8efb;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.logout-btn {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #a777e3, #6e8efb);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(110, 142, 251, 0.15);
+  transition: background 0.2s;
+}
+.logout-btn:hover {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+}

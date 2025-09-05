@@ -1,0 +1,36 @@
+<div class="sign-up-container">
+  <form class="sign-up-form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <h2>Sign Up</h2>
+    <div class="input-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" placeholder="Enter your email" required />
+      <div *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched" class="error">
+        <span *ngIf="signUpForm.get('email')?.errors?.['required']">Email is required.</span>
+        <span *ngIf="signUpForm.get('email')?.errors?.['email']">Enter a valid email address.</span>
+        </div>
+    </div>
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" placeholder="Enter your password" required />
+      <div *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched" class="error">
+        <span *ngIf="signUpForm.get('password')?.errors?.['required']">Password is required.</span>
+        <span *ngIf="signUpForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</span>
+      </div>
+    </div>
+    <div class="input-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your password" required />
+      <div *ngIf="signUpForm.get('confirmPassword')?.invalid && signUpForm.get('confirmPassword')?.touched" class="error">
+        <span *ngIf="signUpForm.get('confirmPassword')?.errors?.['required']">Confirm password is required.</span>
+        <span *ngIf="signUpForm.get('confirmPassword')?.errors?.['minlength']">Confirm password must be at least 6 characters.</span>
+        </div>
+    </div>
+    <div *ngIf="signUpForm.errors?.['passwordsMismatch'] && signUpForm.get('confirmPassword')?.touched" class="error">
+      Passwords do not match.
+    </div>
+    <button type="submit" class="sign-up-btn">Create Account</button>
+    <div class="signup-text">
+      Already have an account? <button routerLink="/sign-in" class="link-btn">Sign In</button>
+    </div>
+  </form>
+</div>

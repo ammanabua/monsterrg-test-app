@@ -4,17 +4,23 @@
     <div class="input-group">
       <label for="email">Email</label>
       <input type="email" id="email" formControlName="email" placeholder="Enter your email" required />
+      <div *ngIf="signInForm.get('email')?.invalid && signInForm.get('email')?.touched" class="error">
+        <span *ngIf="signInForm.get('email')?.errors?.['required']">Email is required.</span>
+        <span *ngIf="signInForm.get('email')?.errors?.['email']">Enter a valid email address.</span>
+      </div>
     </div>
     <div class="input-group">
       <label for="password">Password</label>
       <input type="password" id="password" formControlName="password" placeholder="Enter your password" required />
-      <!-- <span>Forgot your password? Click <a href="/forgot-password">Here</a></span> -->
+      <div *ngIf="signInForm.get('password')?.invalid && signInForm.get('password')?.touched" class="error">
+        <span *ngIf="signInForm.get('password')?.errors?.['required']">Password is required.</span>
+        <span *ngIf="signInForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</span>
+      </div>
+      <span class="forgot-password">Forgot your password? Click <a href="/forgot-password">Here</a></span>
     </div>
     <button type="submit" class="login-btn">Login</button>
     <div class="signup-text">
-      Don't have an account? <a href="#">Sign Up</a>
+      Don't have an account? <button routerLink="/sign-up" class="link-btn">Sign Up</button>
     </div>
   </form>
 </div>
-
-<p>sign-in works!</p>
