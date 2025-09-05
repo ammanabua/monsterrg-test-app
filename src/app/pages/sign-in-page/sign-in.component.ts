@@ -26,6 +26,14 @@ export class SignInComponent {
 
 
   async onSubmit() {
+    // Mark all required controls as touched to show errors
+    Object.keys(this.signInForm.controls).forEach(key => {
+      const control = this.signInForm.get(key);
+      if (control && control.validator && control.hasError('required')) {
+        control.markAsTouched();
+      }
+    });
+
     if (this.signInForm.valid) {
       const { email, password } = this.signInForm.value;
       // Handle sign-in logic here, e.g., using Firebase Auth
