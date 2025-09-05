@@ -1,0 +1,82 @@
+.dialog-container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(110, 142, 251, 0.15);
+  padding: 2.5rem 2rem 2rem 2rem;
+  text-align: center;
+  max-width: 350px;
+  margin: auto;
+}
+
+.checkmark-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.checkmark {
+  width: 72px;
+  height: 72px;
+  stroke: #6e8efb;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: popIn 0.5s ease;
+}
+
+.checkmark-circle {
+  stroke: #a777e3;
+  stroke-width: 2.5;
+  animation: circleIn 0.5s ease;
+}
+
+.checkmark-check {
+  stroke: #6e8efb;
+  stroke-width: 3;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: checkIn 0.5s 0.3s forwards;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes circleIn {
+  0% { stroke-dasharray: 0 160; }
+  100% { stroke-dasharray: 160 0; }
+}
+
+@keyframes checkIn {
+  to { stroke-dashoffset: 0; }
+}
+
+h2 {
+  color: #6e8efb;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.close-btn {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(110, 142, 251, 0.15);
+  transition: background 0.2s;
+}
+
+.close-btn:hover {
+  background: linear-gradient(135deg, #a777e3, #6e8efb);
+}

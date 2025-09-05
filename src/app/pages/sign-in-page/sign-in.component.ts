@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators as validators, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterModule } from '@angular/router';
@@ -46,4 +46,22 @@ export class SignInComponent {
       });
     }
   }
+
+  async signInWithGoogle() {
+  const provider = new GoogleAuthProvider();
+  try {
+    const result = await signInWithPopup(this.auth, provider);
+    // result.user contains the signed-in user info
+    // Optionally, navigate or show a success message
+    this.snackBar.open('Google sign-in successful', 'Close', {
+      duration: 4000
+    });
+    this.router.navigate(['/']);
+  } catch (error) {
+    // Handle errors (e.g., show a snackbar)
+    this.snackBar.open('Google sign-in failed', 'Close', {
+      duration: 4000
+    });
+  }
+}
 }

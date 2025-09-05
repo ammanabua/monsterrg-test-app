@@ -1,6 +1,7 @@
 <div class="login-container">
   <form class="login-form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
     <h2>Login</h2>
+    <p class="login-description">Enter your credentials to save or view flight info.</p>
     <div class="input-group">
       <label for="email">Email</label>
       <input type="email" id="email" formControlName="email" placeholder="Enter your email" required />
@@ -19,6 +20,14 @@
       <span class="forgot-password">Forgot your password? Click <a href="/forgot-password">Here</a></span>
     </div>
     <button type="submit" class="login-btn">Login</button>
+    <button type="button" (click)="signInWithGoogle()" class="google-btn">Login with <span class="google-logo">
+    <span style="color:#4285F4;">G</span>
+    <span style="color:#EA4335;">o</span>
+    <span style="color:#FBBC05;">o</span>
+    <span style="color:#4285F4;">g</span>
+    <span style="color:#34A853;">l</span>
+    <span style="color:#EA4335;">e</span>
+  </span></button>
     <div class="signup-text">
       Don't have an account? <button routerLink="/sign-up" class="link-btn">Sign Up</button>
     </div>
