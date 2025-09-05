@@ -47,6 +47,7 @@ export class HomePageComponent {
       }
     });
 
+    //Check if form is valid and user is authenticated
     if (this.flightForm.valid && this.auth.currentUser) {
       const user = this.auth.currentUser;
       const formValue = this.flightForm.value;
@@ -56,6 +57,8 @@ export class HomePageComponent {
         arrivalTime: formValue.arrivalTime ? formValue.arrivalTime.toString() : '',
         userId: user.uid
       };
+
+      // First request: Store in Firestore
       try {
         await addDoc(collection(this.firestore, 'flights'), flightData);
         this.flightForm.reset();
