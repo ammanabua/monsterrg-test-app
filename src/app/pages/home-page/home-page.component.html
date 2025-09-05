@@ -1,4 +1,6 @@
-<button class="logout-btn" (click)="logout()">Logout</button>
+<button class="logout-btn" (click)="logout()" aria-label="Logout">
+  <span class="material-icons">logout</span>
+</button>
 <div class="tabs">
   <button [class.active]="activeTab === 'store'" (click)="activeTab = 'store'">Store Flight</button>
   <button [class.active]="activeTab === 'retrieve'" (click)="activeTab = 'retrieve'">Retrieve Flight</button>

@@ -1,4 +1,12 @@
 
+.error {
+	color: #e74c3c;
+	font-size: 0.8rem;
+	font-weight: 500;
+	margin-top: -0.5rem;
+	margin-bottom: 0.5rem;	
+}
+
 .login-container {
 	display: flex;
 	justify-content: center;

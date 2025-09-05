@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { FlightSuccessDialogComponent } from '../../shared/flight-success-dialog/flight-success-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FlightFailedDialogComponent } from '../../shared/flight-failed-dialog/flight-failed-dialog.component';
 
 @Component({
   selector: 'app-home-page',
@@ -51,11 +52,39 @@ export class HomePageComponent {
         this.flightForm.reset();
         this.dialog.open(FlightSuccessDialogComponent);
       } catch (error) {
-        alert('Error storing flight');
-        console.error(error);
+        this.dialog.open(FlightFailedDialogComponent);
+        console.error('Error storing flight data: ', error);
+      }
+
+      // Second request: POST to challenge API
+      try {
+        const payload = {
+          airline: formValue.airline,
+          arrivalDate: formValue.arrivalDate ? formValue.arrivalDate.toString() : '',
+          arrivalTime: formValue.arrivalTime ? formValue.arrivalTime.toString() : '',
+          flightNumber: formValue.flightNumber,
+          numOfGuests: Number(formValue.numberOfGuests),
+          comments: formValue.comments || '',
+        };
+
+        const response = await fetch('https://us-central1-crm-sdk.cloudfunctions.net/flightInfoChallenge', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'token': 'WW91IG11c3QgYmUgdGhlIGN1cmlvdXMgdHlwZS4gIEJyaW5nIHRoaXMgdXAgYXQgdGhlIGludGVydmlldyBmb3IgYm9udXMgcG9pbnRzICEh',
+            'candidate': 'Amman Abua'
+          },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+          console.error('Challenge API request failed');
+        }
+      } catch (error) {
+        console.error('Error sending flight data to challenge API: ', error);
       }
     }
   }
+
 
   async retrieveFlight() {
     this.searchAttempted = false;
