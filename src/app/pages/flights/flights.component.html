@@ -1,0 +1,76 @@
+<div class="action-btn-group">
+	<button class="home-btn" routerLink="/" aria-label="Home">
+		<span class="material-icons">home</span>
+	</button>
+	<button class="logout-btn" (click)="logout()" aria-label="Logout">
+		<span class="material-icons">logout</span>
+	</button>
+</div>
+<div class="tabs">
+	<button [class.active]="activeTab === 'store'" (click)="activeTab = 'store'">Store Flight</button>
+	<button [class.active]="activeTab === 'retrieve'" (click)="activeTab = 'retrieve'">Retrieve Flight</button>
+</div>
+
+<div *ngIf="activeTab === 'store'">
+	<form [formGroup]="flightForm" (ngSubmit)="storeFlight()" class="flight-form">
+		<label>Airline</label>
+				<input formControlName="airline" placeholder="e.g. Delta" required />
+				<div *ngIf="flightForm.get('airline')?.invalid && flightForm.get('airline')?.touched" class="error">
+				Airline is required.
+				</div>
+
+				<label>Arrival Date</label>
+				<input type="date" formControlName="arrivalDate" required />
+				<div *ngIf="flightForm.get('arrivalDate')?.invalid && flightForm.get('arrivalDate')?.touched" class="error">
+				Arrival date is required.
+				</div>
+
+				<label>Arrival Time</label>
+				<input type="time" formControlName="arrivalTime" required />
+				<div *ngIf="flightForm.get('arrivalTime')?.invalid && flightForm.get('arrivalTime')?.touched" class="error">
+				Arrival time is required.
+				</div>
+
+	<label>Flight Number (last 4 digits)</label>
+	<input formControlName="flightNumber" required placeholder="e.g. 1234" />
+				<div *ngIf="flightForm.get('flightNumber')?.invalid && flightForm.get('flightNumber')?.touched" class="error">
+				Flight number is required.
+				</div>
+
+				<label>Number of Guests</label>
+				<input type="number" formControlName="numberOfGuests" required />
+				<div *ngIf="flightForm.get('numberOfGuests')?.invalid && flightForm.get('numberOfGuests')?.touched" class="error">
+				Number of guests is required.
+				</div>
+		<label>Comments (optional)</label>
+		<input formControlName="comments" />
+		<button type="submit">Store Flight</button>
+	</form>
+</div>
+
+<div *ngIf="activeTab === 'retrieve'">
+	<form [formGroup]="retrieveForm" (ngSubmit)="retrieveFlight()" class="retrieve-form">
+		<label>Flight Number (last 4 digits)</label>
+		<input formControlName="flightNumber" required placeholder="e.g. 1234" />
+		<div *ngIf="retrieveForm.get('flightNumber')?.invalid && retrieveForm.get('flightNumber')?.touched" class="error">
+			<span *ngIf="retrieveForm.get('flightNumber')?.errors?.['required']">Flight number is required.</span>
+			<span *ngIf="retrieveForm.get('flightNumber')?.errors?.['pattern']">Enter a valid 4-digit flight number.</span>
+		</div>
+		<button type="submit">Retrieve Flight</button>
+	</form>
+	<div class="flight-card" *ngIf="retrievedFlight">
+		<h3>Flight Details</h3>
+		<div class="flight-detail"><strong>Airline:</strong> {{ retrievedFlight.airline }}</div>
+		<div class="flight-detail"><strong>Arrival Date:</strong> {{ retrievedFlight.arrivalDate }}</div>
+		<div class="flight-detail"><strong>Arrival Time:</strong> {{ retrievedFlight.arrivalTime }}</div>
+		<div class="flight-detail"><strong>Flight Number:</strong> {{ retrievedFlight.flightNumber }}</div>
+		<div class="flight-detail"><strong>Number of Guests:</strong> {{ retrievedFlight.numberOfGuests }}</div>
+		<div class="flight-detail" *ngIf="retrievedFlight.comments"><strong>Comments:</strong> {{ retrievedFlight.comments }}</div>
+	</div>
+	<div *ngIf="retrievedFlight === null && searchAttempted" class="no-flight-container">
+		<div class="no-flight-icon">
+			<span class="material-icons">search_off</span>
+		</div>
+		<p class="no-flight-text">No flight found</p>
+	</div>
+</div>

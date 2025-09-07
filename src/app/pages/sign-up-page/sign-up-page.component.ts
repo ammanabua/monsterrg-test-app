@@ -44,10 +44,10 @@ export class SignUpPageComponent {
           uid: user.uid,
           createdAt: new Date().toISOString()
         });
-        this.snackBar.open('Sign-up successful', 'Close', { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' });
+        this.snackBar.open('Account created successfully', 'Close', { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' });
         this.router.navigate(['/']);
       } catch (error) {
-        this.snackBar.open('Sign-up failed', 'Close', { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' });
+        this.snackBar.open('Account creation failed', 'Close', { duration: 4000, horizontalPosition: 'end', verticalPosition: 'top' });
         console.error(error);
       }
     } else {

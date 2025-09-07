@@ -1,3 +1,46 @@
+/* Group home and logout buttons */
+.action-btn-group {
+		display: flex;
+		flex-direction: row;
+		gap: 0.5rem;
+		justify-content: flex-end;
+		align-items: center;
+		margin-bottom: 2rem;
+}
+
+.home-btn, .logout-btn {
+		background: linear-gradient(135deg, #6e8efb, #a777e3);
+		color: #fff;
+		border: none;
+		border-radius: 50%;
+		padding: 0.5rem;
+		font-size: 1.1rem;
+		cursor: pointer;
+		box-shadow: 0 4px 12px rgba(110, 142, 251, 0.15);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background 0.2s, box-shadow 0.2s;
+		width: 40px;
+		height: 40px;
+}
+
+.home-btn:hover, .logout-btn:hover {
+	background: linear-gradient(135deg, #a777e3, #6e8efb);
+	box-shadow: 0 8px 24px rgba(110, 142, 251, 0.25);
+}
+
+.home-btn .material-icons, .logout-btn .material-icons {
+		font-size: 1.7rem;
+}
+
+@media (max-width: 600px) {
+		.action-btn-group {
+			flex-direction: row;
+			gap: 0.5rem;
+			align-items: center;
+		}
+}
 /* Centered and styled no-flight message */
 .no-flight-container {
 	display: flex;

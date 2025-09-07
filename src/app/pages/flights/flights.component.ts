@@ -3,21 +3,22 @@ import { Component } from '@angular/core';
 import { Auth, signOut } from '@angular/fire/auth';
 import { addDoc, collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
 import { FormGroup, FormControl, Validators as validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FlightSuccessDialogComponent } from '../../shared/flight-success-dialog/flight-success-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FlightFailedDialogComponent } from '../../shared/flight-failed-dialog/flight-failed-dialog.component';
 import { FlightInfoPayload } from '../../models/flight-info-payload.model';
+import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-home-page',
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css',
+  selector: 'flights-page',
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  templateUrl: './flights.component.html',
+  styleUrl: './flights.component.css',
 })
-export class HomePageComponent {
-  title = 'Welcome to MonsterRG Test App - Home Page';
+export class FlightsPageComponent {
+  title = 'Welcome to MonsterRG Test App - Flights Page';
   searchAttempted = false;
   activeTab: 'store' | 'retrieve' = 'store';
 
@@ -63,6 +64,11 @@ export class HomePageComponent {
         await addDoc(collection(this.firestore, 'flights'), flightData);
         this.flightForm.reset();
         this.dialog.open(FlightSuccessDialogComponent);
+        // Add 3s delay before routing to landing page
+        setTimeout(() => {
+          this.router.navigate(['/']);
+          this.dialog.closeAll();
+        }, 3000);
       } catch (error) {
         this.dialog.open(FlightFailedDialogComponent);
         console.error('Error storing flight data: ', error);
@@ -83,8 +89,8 @@ export class HomePageComponent {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'token': 'WW91IG11c3QgYmUgdGhlIGN1cmlvdXMgdHlwZS4gIEJyaW5nIHRoaXMgdXAgYXQgdGhlIGludGVydmlldyBmb3IgYm9udXMgcG9pbnRzICEh',
-            'candidate': 'Amman Abua'
+            'token': environment.token,
+            'candidate': environment.candidate
           },
           body: JSON.stringify(payload)
         });
@@ -144,7 +150,7 @@ export class HomePageComponent {
       duration: 4000, horizontalPosition: 'end', verticalPosition: 'top'
     });
     // Optionally, redirect to sign-in page
-    this.router.navigate(['/sign-in']);
+    this.router.navigate(['/']);
   }
 }
 

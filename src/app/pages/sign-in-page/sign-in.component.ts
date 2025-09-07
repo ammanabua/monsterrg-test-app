@@ -73,7 +73,7 @@ export class SignInComponent {
     this.snackBar.open('Google sign-in successful', 'Close', {
       duration: 4000, horizontalPosition: 'end', verticalPosition: 'top'
     });
-    this.router.navigate(['/']);
+    this.router.navigate(['/flights']);
   } catch (error) {
     // Handle errors (e.g., show a snackbar)
     this.snackBar.open('Google sign-in failed', 'Close', {
