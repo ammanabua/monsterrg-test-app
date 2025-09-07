@@ -2,12 +2,13 @@
 
 
 .action-btn-group {
+        padding-top: 0.7rem;
 		display: flex;
 		flex-direction: row;
 		gap: 1.5rem;
 		justify-content: flex-end;
 		align-items: center;
-		margin-bottom: 2rem;
+		margin-bottom: 1rem;
 }
 
 .home-btn, .logout-btn {
@@ -37,8 +38,6 @@
 }
 
 .logout-btn {
-	top: 0.7rem;
-	left: 0.7rem;
 	background: transparent;
 	border: none;
 	color: #6e8efb;
