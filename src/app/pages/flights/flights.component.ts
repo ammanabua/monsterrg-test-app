@@ -68,7 +68,7 @@ export class FlightsPageComponent {
         setTimeout(() => {
           this.router.navigate(['/']);
           this.dialog.closeAll();
-        }, 3000);
+        }, 2000);
       } catch (error) {
         this.dialog.open(FlightFailedDialogComponent);
         console.error('Error storing flight data: ', error);
