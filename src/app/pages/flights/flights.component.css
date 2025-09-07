@@ -1,8 +1,10 @@
 /* Group home and logout buttons */
+
+
 .action-btn-group {
 		display: flex;
 		flex-direction: row;
-		gap: 0.5rem;
+		gap: 1.5rem;
 		justify-content: flex-end;
 		align-items: center;
 		margin-bottom: 2rem;
@@ -32,6 +34,28 @@
 
 .home-btn .material-icons, .logout-btn .material-icons {
 		font-size: 1.7rem;
+}
+
+.logout-btn {
+	top: 0.7rem;
+	left: 0.7rem;
+	background: transparent;
+	border: none;
+	color: #6e8efb;
+	padding: 0.3rem;
+	border-radius: 50%;
+	font-size: 2rem;
+	cursor: pointer;
+	z-index: 10;
+	box-shadow: none;
+	transition: background 0.2s;
+}
+.logout-btn .material-icons {
+	font-size: 2.2rem;
+	color: #6e8efb;
+}
+.logout-btn:hover .material-icons {
+	color: #fff;
 }
 
 @media (max-width: 600px) {
@@ -193,29 +217,6 @@ pre {
   to { opacity: 1; transform: translateY(0);}
 }
 
-
-.logout-btn {
-	position: absolute;
-	top: 0.7rem;
-	left: 0.7rem;
-	background: transparent;
-	border: none;
-	color: #6e8efb;
-	padding: 0.3rem;
-	border-radius: 50%;
-	font-size: 2rem;
-	cursor: pointer;
-	z-index: 10;
-	box-shadow: none;
-	transition: background 0.2s;
-}
-.logout-btn .material-icons {
-	font-size: 2.2rem;
-	color: #6e8efb;
-}
-.logout-btn:hover .material-icons {
-	color: #a777e3;
-}
 
 @media (max-width: 600px) {
 	.logout-btn {

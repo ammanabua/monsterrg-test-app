@@ -1,10 +1,10 @@
 <div class="action-btn-group">
-	<button class="home-btn" routerLink="/" aria-label="Home">
-		<span class="material-icons">home</span>
-	</button>
-	<button class="logout-btn" (click)="logout()" aria-label="Logout">
-		<span class="material-icons">logout</span>
-	</button>
+    <button class="home-btn" routerLink="/" aria-label="Home">
+        <span class="material-icons">home</span>
+    </button>
+    <button class="logout-btn" (click)="logout()" aria-label="Logout">
+        <span class="material-icons">logout</span>
+    </button>
 </div>
 <div class="tabs">
 	<button [class.active]="activeTab === 'store'" (click)="activeTab = 'store'">Store Flight</button>

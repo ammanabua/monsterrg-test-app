@@ -7,4 +7,6 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./landing-page.component.css'],
   imports: [RouterModule]
 })
-export class LandingPageComponent {}
+export class LandingPageComponent {
+    title = "Welcome to MonsterRG Test App - Homepage"
+}
