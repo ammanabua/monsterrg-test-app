@@ -21,6 +21,7 @@ export class FlightsPageComponent {
   title = 'Welcome to MonsterRG Test App - Flights Page';
   searchAttempted = false;
   activeTab: 'store' | 'retrieve' = 'store';
+  today: string = new Date().toISOString().split('T')[0];
 
   flightForm = new FormGroup({
     airline: new FormControl('', [validators.required]),

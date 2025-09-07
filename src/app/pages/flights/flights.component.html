@@ -19,8 +19,8 @@
 				Airline is required.
 				</div>
 
-				<label>Arrival Date</label>
-				<input type="date" formControlName="arrivalDate" required />
+			<label>Arrival Date</label>
+			<input type="date" formControlName="arrivalDate" required [min]="today" />
 				<div *ngIf="flightForm.get('arrivalDate')?.invalid && flightForm.get('arrivalDate')?.touched" class="error">
 				Arrival date is required.
 				</div>
