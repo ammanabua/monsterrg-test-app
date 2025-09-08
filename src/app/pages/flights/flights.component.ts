@@ -22,13 +22,32 @@ export class FlightsPageComponent {
   // Validator to ensure arrivalDate is today or in the future
   futureDateValidator(control: AbstractControl) {
     if (!control.value) return null;
-    const inputDate = new Date(control.value);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    if (inputDate < today) {
-      return { pastDate: true };
-    }
-    return null;
+      let inputYear, inputMonth, inputDay;
+      if (typeof control.value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(control.value)) {
+        // Parse YYYY-MM-DD format
+        const parts = control.value.split('-');
+        inputYear = parseInt(parts[0], 10);
+        inputMonth = parseInt(parts[1], 10) - 1; // JS months are 0-based
+        inputDay = parseInt(parts[2], 10);
+      } else {
+        const inputDate = new Date(control.value);
+        inputYear = inputDate.getFullYear();
+        inputMonth = inputDate.getMonth();
+        inputDay = inputDate.getDate();
+      }
+      const today = new Date();
+      const todayYear = today.getFullYear();
+      const todayMonth = today.getMonth();
+      const todayDay = today.getDate();
+
+      if (
+        inputYear < todayYear ||
+        (inputYear === todayYear && inputMonth < todayMonth) ||
+        (inputYear === todayYear && inputMonth === todayMonth && inputDay < todayDay)
+      ) {
+        return { pastDate: true };
+      }
+      return null;
   }
   title = 'Welcome to MonsterRG Test App - Flights Page';
   searchAttempted = false;
