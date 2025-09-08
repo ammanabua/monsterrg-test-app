@@ -14,35 +14,39 @@
 <div *ngIf="activeTab === 'store'">
 	<form [formGroup]="flightForm" (ngSubmit)="storeFlight()" class="flight-form">
 		<label>Airline</label>
-				<input formControlName="airline" placeholder="e.g. Delta" required />
-				<div *ngIf="flightForm.get('airline')?.invalid && flightForm.get('airline')?.touched" class="error">
-				Airline is required.
-				</div>
+        <input formControlName="airline" placeholder="e.g. Delta" required />
+        <div *ngIf="flightForm.get('airline')?.invalid && flightForm.get('airline')?.touched" class="error">
+            <span *ngIf="flightForm.get('airline')?.errors?.['required']">Airline is required.</span>
+            <span *ngIf="flightForm.get('airline')?.errors?.['minlength']">Airline name must be at least 2 characters.</span>
+            <span *ngIf="flightForm.get('airline')?.errors?.['maxlength']">Airline name must be at most 30 characters.</span>
+            <span *ngIf="flightForm.get('airline')?.errors?.['pattern']">Only letters, spaces, and hyphens are allowed.</span>
+        </div>
 
-			<label>Arrival Date</label>
-			<input type="date" formControlName="arrivalDate" required [min]="today" />
-				<div *ngIf="flightForm.get('arrivalDate')?.invalid && flightForm.get('arrivalDate')?.touched" class="error">
-				Arrival date is required.
-				</div>
+        <label>Arrival Date</label>
+        <input type="date" formControlName="arrivalDate" required [min]="today" />
+        <div *ngIf="flightForm.get('arrivalDate')?.invalid && flightForm.get('arrivalDate')?.touched" class="error">
+        Arrival date is required.
+        </div>
 
-				<label>Arrival Time</label>
-				<input type="time" formControlName="arrivalTime" required />
-				<div *ngIf="flightForm.get('arrivalTime')?.invalid && flightForm.get('arrivalTime')?.touched" class="error">
-				Arrival time is required.
-				</div>
+        <label>Arrival Time</label>
+        <input type="time" formControlName="arrivalTime" required />
+        <div *ngIf="flightForm.get('arrivalTime')?.invalid && flightForm.get('arrivalTime')?.touched" class="error">
+        Arrival time is required.
+        </div>
 
-	<label>Flight Number (last 4 digits)</label>
-	<input formControlName="flightNumber" required placeholder="e.g. 1234" />
-				<div *ngIf="flightForm.get('flightNumber')?.invalid && flightForm.get('flightNumber')?.touched" class="error">
-				Flight number is required.
-				</div>
+        <label>Flight Number (last 4 digits)</label>
+        <input formControlName="flightNumber" required placeholder="e.g. 1234" />
+        <div *ngIf="flightForm.get('flightNumber')?.invalid && flightForm.get('flightNumber')?.touched" class="error">
+        Flight number is required.
+        </div>
 
-			<label>Number of Guests</label>
-			<input type="number" formControlName="numberOfGuests" required min="1" />
-						<div *ngIf="flightForm.get('numberOfGuests')?.invalid && flightForm.get('numberOfGuests')?.touched" class="error">
-							<span *ngIf="flightForm.get('numberOfGuests')?.errors?.['required']">Number of guests is required.</span>
-							<span *ngIf="flightForm.get('numberOfGuests')?.errors?.['min']">You must enter at least 1 guest.</span>
-						</div>
+        <label>Number of Guests</label>
+        <input type="number" formControlName="numberOfGuests" required min="1" />
+        <div *ngIf="flightForm.get('numberOfGuests')?.invalid && flightForm.get('numberOfGuests')?.touched" class="error">
+            <span *ngIf="flightForm.get('numberOfGuests')?.errors?.['required']">Number of guests is required.</span>
+            <span *ngIf="flightForm.get('numberOfGuests')?.errors?.['min']">You must enter at least 1 guest.</span>
+        </div>
+        
 		<label>Comments (optional)</label>
 		<input formControlName="comments" />
 		<button type="submit">Store Flight</button>

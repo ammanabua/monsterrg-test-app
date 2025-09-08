@@ -24,7 +24,7 @@ export class FlightsPageComponent {
   today: string = new Date().toISOString().split('T')[0];
 
   flightForm = new FormGroup({
-    airline: new FormControl('', [validators.required]),
+    airline: new FormControl('', [validators.required, validators.minLength(2), validators.maxLength(30), validators.pattern('^[A-Za-z\\s-]+$')]),
     arrivalDate: new FormControl('', [validators.required]),
     arrivalTime: new FormControl('', [validators.required]),
     flightNumber: new FormControl('', [validators.required, validators.pattern('^[0-9]{1,4}$')]),
