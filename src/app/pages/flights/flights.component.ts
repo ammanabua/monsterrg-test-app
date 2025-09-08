@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FlightFailedDialogComponent } from '../../shared/flight-failed-dialog/flight-failed-dialog.component';
 import { FlightInfoPayload } from '../../models/flight-info-payload.model';
 import { environment } from '../../../environments/environment';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'flights-page',
@@ -18,6 +19,17 @@ import { environment } from '../../../environments/environment';
   styleUrl: './flights.component.css',
 })
 export class FlightsPageComponent {
+  // Validator to ensure arrivalDate is today or in the future
+  futureDateValidator(control: AbstractControl) {
+    if (!control.value) return null;
+    const inputDate = new Date(control.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (inputDate < today) {
+      return { pastDate: true };
+    }
+    return null;
+  }
   title = 'Welcome to MonsterRG Test App - Flights Page';
   searchAttempted = false;
   activeTab: 'store' | 'retrieve' = 'store';
@@ -25,7 +37,7 @@ export class FlightsPageComponent {
 
   flightForm = new FormGroup({
     airline: new FormControl('', [validators.required, validators.minLength(2), validators.maxLength(30), validators.pattern('^[A-Za-z\\s-]+$')]),
-    arrivalDate: new FormControl('', [validators.required]),
+    arrivalDate: new FormControl('', [validators.required, this.futureDateValidator.bind(this)]),
     arrivalTime: new FormControl('', [validators.required]),
     flightNumber: new FormControl('', [validators.required, validators.pattern('^[0-9]{1,4}$')]),
     numberOfGuests: new FormControl('', [validators.required, validators.pattern('^[0-9]{1,3}$')]),

@@ -27,6 +27,9 @@
         <div *ngIf="flightForm.get('arrivalDate')?.invalid && flightForm.get('arrivalDate')?.touched" class="error">
         Arrival date is required.
         </div>
+        <div *ngIf="flightForm.get('arrivalDate')?.errors?.['pastDate'] && flightForm.get('arrivalDate')?.touched" class="error">
+            Arrival date must be today or in the future.
+        </div>
 
         <label>Arrival Time</label>
         <input type="time" formControlName="arrivalTime" required />
@@ -72,7 +75,7 @@
 		<div class="flight-detail"><strong>Arrival Date:</strong> {{ retrievedFlight.arrivalDate }}</div>
 		<div class="flight-detail"><strong>Arrival Time:</strong> {{ retrievedFlight.arrivalTime }}</div>
 		<div class="flight-detail"><strong>Flight Number:</strong> {{ retrievedFlight.flightNumber }}</div>
-		<div class="flight-detail"><strong>Number of Guests:</strong> {{ retrievedFlight.numberOfGuests }}</div>
+		<div class="flight-detail"><strong>Number of Guests:</strong> {{ retrievedFlight.numOfGuests }}</div>
 		<div class="flight-detail" *ngIf="retrievedFlight.comments"><strong>Comments:</strong> {{ retrievedFlight.comments }}</div>
 	</div>
 	<div *ngIf="retrievedFlight === null && searchAttempted" class="no-flight-container">
