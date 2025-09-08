@@ -29,6 +29,10 @@ export class SignUpPageComponent {
   constructor(private auth: Auth, private snackBar: MatSnackBar, private router: Router, private firestore: Firestore ) { }
 
   async onSubmit() {
+    // Mark all controls as touched to show validation errors
+    Object.keys(this.signUpForm.controls).forEach(key => {
+      this.signUpForm.get(key)?.markAsTouched();
+    });
     if (this.signUpForm.valid) {
       const { email, password, confirmPassword } = this.signUpForm.value;
       if (password !== confirmPassword) {
