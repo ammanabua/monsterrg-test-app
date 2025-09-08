@@ -16,7 +16,7 @@ html, body {
   flex-direction: row;
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(120deg, #e0f7fa 0%, #b2dfdb 100%);
+  background: linear-gradient(120deg, #7ec9f5 0%, #f7fafc 100%);
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -30,32 +30,35 @@ html, body {
   justify-content: center;
   align-items: flex-start;
   padding: 0 5vw;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 32px 0 rgba(191, 201, 209, 0.15);
 }
 .landing-title {
   font-size: 3rem;
   font-weight: 700;
-  color: #009688;
+  color: #4a90e2;
   margin-bottom: 1rem;
 }
 .landing-subtitle {
   font-size: 1.5rem;
-  color: #555;
+  color: #6b7a8f;
   margin-bottom: 2rem;
 }
 .landing-btn {
   display: inline-block;
   padding: 0.75rem 2rem;
   font-size: 1.2rem;
-  background: #00bfa5;
-  color: #fff;
+  background: linear-gradient(90deg, #ffe29a 0%, #7ec9f5 100%);
+  color: #4a90e2;
   border-radius: 30px;
   text-decoration: none;
-  box-shadow: 0 4px 16px rgba(0,191,165,0.15);
+  box-shadow: 0 4px 16px rgba(74, 144, 226, 0.15);
   transition: background 0.3s, box-shadow 0.3s;
 }
 .landing-btn:hover {
-  background: #009688;
-  box-shadow: 0 8px 24px rgba(0,191,165,0.25);
+    background: linear-gradient(90deg, #7ec9f5 0%, #ffe29a 100%);
+    color: #fff;  
+    box-shadow: 0 8px 24px rgba(74, 144, 226, 0.25);
 }
 
 .landing-graphic {
@@ -79,7 +82,7 @@ html, body {
   margin: 0;
   padding: 0;
   display: block;
-  filter: drop-shadow(0 8px 24px rgba(0,191,165,0.15));
+  filter: drop-shadow(0 8px 24px #bfc9d1);
 }
 
 @media (max-width: 900px) {
