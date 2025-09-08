@@ -29,7 +29,9 @@ export class FlightsPageComponent {
     arrivalTime: new FormControl('', [validators.required]),
     flightNumber: new FormControl('', [validators.required, validators.pattern('^[0-9]{1,4}$')]),
     numberOfGuests: new FormControl('', [validators.required, validators.pattern('^[0-9]{1,3}$')]),
-    comments: new FormControl('')
+    comments: new FormControl('', [
+      validators.pattern('^[A-Za-z\s-]+$')
+    ])
   });
 
   retrieveForm = new FormGroup({
