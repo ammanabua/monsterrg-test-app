@@ -37,11 +37,12 @@
 				Flight number is required.
 				</div>
 
-				<label>Number of Guests</label>
-				<input type="number" formControlName="numberOfGuests" required />
-				<div *ngIf="flightForm.get('numberOfGuests')?.invalid && flightForm.get('numberOfGuests')?.touched" class="error">
-				Number of guests is required.
-				</div>
+			<label>Number of Guests</label>
+			<input type="number" formControlName="numberOfGuests" required min="1" />
+						<div *ngIf="flightForm.get('numberOfGuests')?.invalid && flightForm.get('numberOfGuests')?.touched" class="error">
+							<span *ngIf="flightForm.get('numberOfGuests')?.errors?.['required']">Number of guests is required.</span>
+							<span *ngIf="flightForm.get('numberOfGuests')?.errors?.['min']">You must enter at least 1 guest.</span>
+						</div>
 		<label>Comments (optional)</label>
 		<input formControlName="comments" />
 		<button type="submit">Store Flight</button>
