@@ -50,7 +50,7 @@ export class SignInComponent {
       }
     } else {
       console.log('Form is invalid');
-      this.snackBar.open('Invalid email/password combination.', 'Close', {
+      this.snackBar.open('Input valid credentials.', 'Close', {
         duration: 4000, horizontalPosition: 'end', verticalPosition: 'top'
       });
     }
