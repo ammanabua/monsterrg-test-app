@@ -42,7 +42,7 @@ export class SignInComponent {
         this.snackBar.open('Sign-in successful', 'Close', {
           duration: 4000, horizontalPosition: 'end', verticalPosition: 'top'
         });
-        this.router.navigate(['/']);
+        this.router.navigate(['/flights']);
       } catch (error) {
         this.snackBar.open('Sign-in failed', 'Close', {
           duration: 4000, horizontalPosition: 'end', verticalPosition: 'top'

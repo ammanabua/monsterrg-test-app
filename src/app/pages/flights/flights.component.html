@@ -40,8 +40,10 @@
         <label>Flight Number (last 4 digits)</label>
         <input formControlName="flightNumber" required placeholder="e.g. 1234" />
         <div *ngIf="flightForm.get('flightNumber')?.invalid && flightForm.get('flightNumber')?.touched" class="error">
-        Flight number is required.
-        </div>
+			<span *ngIf="flightForm.get('flightNumber')?.errors?.['required']">Flight number is required.</span>
+			<span *ngIf="flightForm.get('flightNumber')?.errors?.['pattern']">Enter a valid 4-digit flight number.</span>
+		</div>
+
 
         <label>Number of Guests</label>
         <input type="number" formControlName="numberOfGuests" required min="1" />
