@@ -88,6 +88,7 @@ export class FlightsPageComponent {
         ...formValue,
         arrivalDate: formValue.arrivalDate ? formValue.arrivalDate.toString() : '',
         arrivalTime: formValue.arrivalTime ? formValue.arrivalTime.toString() : '',
+        numberOfGuests: formValue.numberOfGuests ? Number(String(formValue.numberOfGuests).trim()) : null,
         userId: user.uid
       };
 
@@ -113,7 +114,7 @@ export class FlightsPageComponent {
           arrivalDate: formValue.arrivalDate ? formValue.arrivalDate.toString() : null,
           arrivalTime: formValue.arrivalTime ? formValue.arrivalTime.toString() : null,
           flightNumber: formValue.flightNumber ?? null,
-          numOfGuests: formValue.numberOfGuests !== undefined && formValue.numberOfGuests !== null ? Number(formValue.numberOfGuests) : null,
+          numOfGuests: formValue.numberOfGuests !== undefined && formValue.numberOfGuests !== null ? Number(String(formValue.numberOfGuests).trim()) : null,
           comments: formValue.comments ?? null,
         };
 
