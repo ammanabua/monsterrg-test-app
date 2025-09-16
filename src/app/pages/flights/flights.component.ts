@@ -59,7 +59,7 @@ export class FlightsPageComponent {
     arrivalDate: new FormControl('', [validators.required, this.futureDateValidator.bind(this)]),
     arrivalTime: new FormControl('', [validators.required]),
     flightNumber: new FormControl('', [validators.required, validators.pattern('^[0-9]{1,4}$')]),
-    numberOfGuests: new FormControl('', [validators.required, validators.pattern('^[0-9]{1,3}$')]),
+    numOfGuests: new FormControl('', [validators.required, validators.pattern('^[0-9]{1,3}$')]),
     comments: new FormControl('', [validators.pattern('^(?=.*[A-Za-z-])[A-Za-z\\s\\-,\\.]+$')])
   });
 
@@ -88,7 +88,7 @@ export class FlightsPageComponent {
         ...formValue,
         arrivalDate: formValue.arrivalDate ? formValue.arrivalDate.toString() : '',
         arrivalTime: formValue.arrivalTime ? formValue.arrivalTime.toString() : '',
-        numberOfGuests: formValue.numberOfGuests ? Number(String(formValue.numberOfGuests).trim()) : null,
+        numOfGuests: formValue.numOfGuests ? Number(String(formValue.numOfGuests).trim()) : null,
         userId: user.uid
       };
 
@@ -114,7 +114,7 @@ export class FlightsPageComponent {
           arrivalDate: formValue.arrivalDate ? formValue.arrivalDate.toString() : null,
           arrivalTime: formValue.arrivalTime ? formValue.arrivalTime.toString() : null,
           flightNumber: formValue.flightNumber ?? null,
-          numOfGuests: formValue.numberOfGuests !== undefined && formValue.numberOfGuests !== null ? Number(String(formValue.numberOfGuests).trim()) : null,
+          numOfGuests: formValue.numOfGuests !== undefined && formValue.numOfGuests !== null ? Number(String(formValue.numOfGuests).trim()) : null,
           comments: formValue.comments ?? null,
         };
 
